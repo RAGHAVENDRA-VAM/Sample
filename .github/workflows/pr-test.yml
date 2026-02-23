@@ -1,0 +1,25 @@
+name: PR Test Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_id:
+        description: 'Pull Request ID'
+        required: true
+      branch:
+        description: 'Branch Name'
+        required: true
+      repo_name:
+        description: 'Repository Name'
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Inputs
+        run: |
+          echo "PR ID: ${{ github.event.inputs.pr_id }}"
+          echo "Branch: ${{ github.event.inputs.branch }}"
+          echo "Repo: ${{ github.event.inputs.repo_name }}"
