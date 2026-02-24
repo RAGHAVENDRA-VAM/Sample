@@ -1,21 +1,32 @@
-name: PR Trigger Pipeline
+name: Guidewire PR Trigger
 
 on:
   workflow_dispatch:
     inputs:
-      pr_id:
+      sourceBranch:
         required: true
-      branch:
+        type: string
+      targetBranch:
         required: true
-      repository:
+        type: string
+      prLink:
         required: true
+        type: string
+      prTitle:
+        required: true
+        type: string
+      actorEmail:
+        required: true
+        type: string
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Print PR Details
+      - name: Print Inputs
         run: |
-          echo "PR ID: ${{ github.event.inputs.pr_id }}"
-          echo "Branch: ${{ github.event.inputs.branch }}"
-          echo "Repository: ${{ github.event.inputs.repository }}"
+          echo "Source Branch: ${{ github.event.inputs.sourceBranch }}"
+          echo "Target Branch: ${{ github.event.inputs.targetBranch }}"
+          echo "PR Link: ${{ github.event.inputs.prLink }}"
+          echo "PR Title: ${{ github.event.inputs.prTitle }}"
+          echo "Actor Email: ${{ github.event.inputs.actorEmail }}"
