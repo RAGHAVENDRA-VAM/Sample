@@ -1,0 +1,21 @@
+name: PR Trigger Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_id:
+        required: true
+      branch:
+        required: true
+      repository:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Details
+        run: |
+          echo "PR ID: ${{ github.event.inputs.pr_id }}"
+          echo "Branch: ${{ github.event.inputs.branch }}"
+          echo "Repository: ${{ github.event.inputs.repository }}"
